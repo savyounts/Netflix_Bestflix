@@ -1,15 +1,15 @@
 
-class Scraper
+class Netflix_bestflix::Scraper
 
-  def get_page
-    Nokogiri::HTML(open("https://editorial.rottentomatoes.com/guide/best-netflix-shows-and-movies-to-binge-watch-now"))
+
+  def self.scrape_show_index
+    doc = Nokogiri::HTML(open("https://editorial.rottentomatoes.com/guide/best-netflix-shows-and-movies-to-binge-watch-now"))
+    doc.css("div .articleContentBody div")
   end
 
-  def scrape_show_index
-    self.get_page.css("div .articleContentBody div")
-  end
-
-  def make_show
-    scrape_show_index.each {|s| Netflix_bestflix::Show.new(r)}
+  def make_show_from_index
+    scrape_show_index.each do |show|
+      Netflix_bestflix::Show.new_from_scrape(show)
+    end
   end
 end
