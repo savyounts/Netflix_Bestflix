@@ -3,27 +3,30 @@ class NetflixBestflix::CLI
   def call
     #Netflix_bestflix::Scraper.new.make_show_from_index
     puts "Welcome to Netflix Bestflix, a great way to show you Rotten Tomatoe's top rated shows and movies on Netflix!"
-    #start
+    puts "Would you like to look at movies or shows?"
+    start
   end
 
   def start
     puts ""
-    puts "Would you like to look at movies or shows?"
     input = gets.strip.downcase
     if input == "movies"
       movies
     elsif input == "shows"
       shows
+    elsif input == "exit"
+      puts "Goodbye for now, happy viewing!"
     else
-      put "I'm sorry, I didn't understand your answer. Please type 'movies' or 'shows'."
+      puts "I'm sorry, I didn't understand your answer. Please type 'movies' or 'shows'."
+      start
     end
   end
 
   def movies
     puts "What number movies would you like to see? 1-10, 11-20, 21-30, 31-40, 41+? Enter the first number of the group you'd like to see:"
-    movie_numbers = gets.strip.to_i
+    start_number = gets.strip.to_i
 
-    print_movies(movie_numbers)
+    print_movies(start_number)
 
     puts "Type the number of the movie you would like more information about:"
     input = gets.strip.to_i
@@ -82,4 +85,17 @@ class NetflixBestflix::CLI
       input = gets.strip.downcase
     end
   end
+
+  def print_movies(start_number)
+    movies = ["movie", "movie2", "movie3", "movie4"]
+    movies[start_number-1, start_number+2].each.with_index(1) do |movie, i|
+    puts "#{i}. #{movie}"
+    end
+  end
+
+  def print_movie(input)
+    movies = ["movie", "movie2", "movie3", "movie4"]
+    puts movies[input]
+  end
+
 end
