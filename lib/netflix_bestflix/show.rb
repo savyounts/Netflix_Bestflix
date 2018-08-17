@@ -14,7 +14,7 @@ class NetflixBestflix::Show
     self.new(
       s.css("h2 a").text,
       s.css(".cast a").collect {|c| c.css.text},
-      s.css(".countdown-index").text,
+      s.css(".countdown-index").text.gsub('#',''),
       s.css("div a").attr("href").value
     )
   end
