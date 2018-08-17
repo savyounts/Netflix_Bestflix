@@ -1,7 +1,7 @@
 class NetflixBestflix::CLI
 
   def call
-    #Netflix_bestflix::Scraper.new.make_show_from_index
+    NetflixBestflix::Scraper.new.make_shows
     puts "Welcome to Netflix Bestflix, a great way to show you Rotten Tomatoe's top rated shows and movies on Netflix!"
     puts "Would you like to look at movies or shows?"
     start
@@ -41,7 +41,7 @@ class NetflixBestflix::CLI
 
     input = gets.strip.downcase
     if input == "back"
-      print_movies(movie_numbers) #needs to be able to ask for movie # again
+      print_movies(start_number) #needs to be able to ask for movie # again
     elsif input == "new"
       movies
     elsif input == "shows"
@@ -55,7 +55,8 @@ class NetflixBestflix::CLI
   end
 
   def shows
-    puts "What number shows would you like to see? 1-10, 11-20, 21-30, 31-40, 41-50, 51-60, 61-70, 71-80, 81-9 0or 91+? Type the first number of the group you'd like to see:"
+    puts "What number shows would you like to see? 1-10, 11-20, 21-30, 31-40, 41-50, 51-60, 61-70, 71-80, 81-90 or 91+?"
+    puts "Type the first number of the group you'd like to see:"
     show_numbers = gets.strip.to_i
 
     print_shows(show_numbers)
@@ -73,7 +74,7 @@ class NetflixBestflix::CLI
 
     input = gets.strip.downcase
     if input == "back"
-      print_movies(movie_numbers) #needs to be able to ask for movie # again
+      print_shows(start_number) #needs to be able to ask for shows again
     elsif input == "new"
       shows
     elsif input == "movies"
@@ -86,14 +87,19 @@ class NetflixBestflix::CLI
     end
   end
 
-  def print_movies(start_number)
-    movies = ["movie", "movie2", "movie3", "movie4"]
-    movies[start_number-1, start_number+2].each.with_index(1) do |movie, i|
-    puts "#{i}. #{movie}"
+  def print_shows(start_num)
+    puts ""
+    puts " ------- Shows No.#{start_num} - #{start_num+9} -------"
+    puts ""
+    NetflixBestflix::Show.all[start_num-1, start_num+9].each do |show|
+      puts "#{show.position}. #{show.title} - Starring: #{starring}"
     end
+    # movies = ["movie", "movie2", "movie3", "movie4"]
+    # movies[start_num-1, start_numb+2].each.with_index(1) do |movie, i|
+    # puts "#{i}. #{movie}"
   end
 
-  def print_movie(input)
+  def print_show(input)
     movies = ["movie", "movie2", "movie3", "movie4"]
     puts movies[input]
   end
