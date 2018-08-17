@@ -24,4 +24,14 @@ Netflix Bestflix:
     # of Seasons:
     Cast:
  7. Asks user if they want to go back to the numbered list(back), choose a new numbered list (new), or exit (exit).
- 8. If exiting say "Goodbye for now, happy viewing!" 
+ 8. If exiting say "Goodbye for now, happy viewing!"
+
+ --------------------------------------------------------------------------------------
+
+ ClI Class
+
+ Scraper Class?
+
+ Movie Class/Objects -
+                      |- (same set up, but different url)
+ Show Class/Objects --
