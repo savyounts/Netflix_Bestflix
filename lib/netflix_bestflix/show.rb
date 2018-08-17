@@ -13,7 +13,7 @@ class NetflixBestflix::Show
   def self.new_from_scrape(s)
     self.new(
       s.css("h2 a").text,
-      s.css(".cast a").collect {|c| c.css.text},
+      s.css(".cast").css("a").text, # need to make sure cast names are separated
       s.css(".countdown-index").text.gsub('#',''),
       s.css("div a").attr("href").value
     )
