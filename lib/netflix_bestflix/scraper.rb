@@ -1,5 +1,5 @@
 
-class Netflix_bestflix::Scraper
+class NetflixBestflix::Scraper
 
 
   def self.scrape_show_index

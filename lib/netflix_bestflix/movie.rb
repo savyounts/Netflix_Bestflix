@@ -1,3 +1,3 @@
-class Netflix_bestflix_Moive
+class NetflixBestflix_Moive
 
 end

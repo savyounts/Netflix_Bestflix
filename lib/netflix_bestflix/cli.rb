@@ -1,9 +1,9 @@
-class Netflix_Bestflix::CLI
+class NetflixBestflix::CLI
 
   def call
-    Netflix_bestflix::Scraper.new.make_show_from_index
+    #Netflix_bestflix::Scraper.new.make_show_from_index
     puts "Welcome to Netflix Bestflix, a great way to show you Rotten Tomatoe's top rated shows and movies on Netflix!"
-    start
+    #start
   end
 
   def start
@@ -12,7 +12,7 @@ class Netflix_Bestflix::CLI
     input = gets.strip.downcase
     if input == "movies"
       movies
-    if input == "shows"
+    elsif input == "shows"
       shows
     else
       put "I'm sorry, I didn't understand your answer. Please type 'movies' or 'shows'."
@@ -39,11 +39,11 @@ class Netflix_Bestflix::CLI
     input = gets.strip.downcase
     if input == "back"
       print_movies(movie_numbers) #needs to be able to ask for movie # again
-    if input == "new"
+    elsif input == "new"
       movies
-    if input == "shows"
+    elsif input == "shows"
       shows
-    if input == "exit"
+    elsif input == "exit"
       puts "Goodbye for now, happy viewing!"
     else
       puts "Sorry, I didn't understand your answer. Please type 'back', 'new', 'shows' or 'exit'."
@@ -71,20 +71,15 @@ class Netflix_Bestflix::CLI
     input = gets.strip.downcase
     if input == "back"
       print_movies(movie_numbers) #needs to be able to ask for movie # again
-    if input == "new"
+    elsif input == "new"
       shows
-    if input == "movies"
+    elsif input == "movies"
       movies
-    if input == "exit"
+    elsif input == "exit"
       puts "Goodbye for now, happy viewing!"
     else
       puts "Sorry, I didn't understand your answer. Please type 'back', 'new', 'shows' or 'exit'."
       input = gets.strip.downcase
     end
   end
-
-
-
-
-
 end

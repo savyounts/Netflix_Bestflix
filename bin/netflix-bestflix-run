@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 require_relative '../lib/netflix_bestflix'
 
-Netflix_bestflix::CLI.new.call 
+NetflixBestflix::CLI.new.call

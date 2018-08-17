@@ -1,5 +1,5 @@
-class Netflix_bestflix::Show
-  attr_accessor :title, :position, :url, :starring, :genre, :rt_score, :viewer_score, :cast,  :tv_network, :description, :created_by, :seasons,
+class NetflixBestflix::Show
+  attr_accessor :title, :position, :url, :starring, :genre, :rt_score, :viewer_score, :cast,  :tv_network, :description, :created_by, :seasons
   @@all = []
 
   def initialize(title = nil, starring = nil, rating = nil, url = nil)
@@ -33,7 +33,7 @@ class Netflix_bestflix::Show
 
   def cast
     @cast || doc.css(".cast-item").collect do |c|
-      c.css(".cast-item .media-body a span").text}
+      c.css(".cast-item .media-body a span").text
     end
   end
 
