@@ -62,9 +62,9 @@ class NetflixBestflix::CLI
     print_shows(show_numbers)
 
     puts "Type the number of the show you would like more information about:"
-    input = gets.strip.to_i
+    show_num = gets.strip.to_i
 
-    print_show(input)
+    print_show(show_num)
     puts ''
 
     puts "Type 'back' if you'd like to go back to your list of shows."
