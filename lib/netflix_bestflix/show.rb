@@ -2,10 +2,10 @@ class NetflixBestflix::Show
   attr_accessor :title, :position, :url, :starring, :genre, :rt_score, :viewer_score, :cast,  :tv_network, :description, :created_by, :seasons
   @@all = []
 
-  def initialize(title = nil, starring = nil, rating = nil, url = nil)
+  def initialize(title = nil, starring = nil, position = nil, url = nil)
     @title = title
     @starring = starring
-    @position = postion
+    @position = position
     @url = url
     @@all << self
   end

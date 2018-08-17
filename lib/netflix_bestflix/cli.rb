@@ -92,11 +92,8 @@ class NetflixBestflix::CLI
     puts " ------- Shows No.#{start_num} - #{start_num+9} -------"
     puts ""
     NetflixBestflix::Show.all[start_num-1, start_num+9].each do |show|
-      puts "#{show.position}. #{show.title} - Starring: #{starring}"
+      puts "#{show.position}. #{show.title} - Starring: #{show.starring}"
     end
-    # movies = ["movie", "movie2", "movie3", "movie4"]
-    # movies[start_num-1, start_numb+2].each.with_index(1) do |movie, i|
-    # puts "#{i}. #{movie}"
   end
 
   def print_show(input)
