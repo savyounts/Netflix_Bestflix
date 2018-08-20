@@ -2,6 +2,7 @@ class NetflixBestflix::CLI
 
   def call
     NetflixBestflix::Scraper.new.make_shows
+    NetflixBestflix::Scraper.new.make_movies
     puts "Welcome to Netflix Bestflix, a great way to show you Rotten Tomatoes' top rated shows and movies on Netflix!"
     puts "Would you like to look at movies or shows?"
     start
@@ -97,6 +98,15 @@ class NetflixBestflix::CLI
     end
   end
 
+  def print_movies(start_num)
+    puts ""
+    puts " ------- Movies No.#{start_num} - #{start_num+9} -------"
+    puts ""
+    NetflixBestflix::Movie.all[start_num-1..start_num+8].each do |show|
+      puts "#{movie.position}. #{movie.title} - Starring: #{show.rating}"
+    end
+  end
+
   def print_show(show_num)
     show = NetflixBestflix::Show.find_by_position(show_num.to_s)
     puts ""
@@ -113,4 +123,15 @@ class NetflixBestflix::CLI
     puts "TV Network: #{show.tv_network}"
   end
 
+  def print_movie(show_num)
+    show = NetflixBestflix::Movie.find_by_position(show_num.to_s)
+    puts ""
+    puts " ------- No.#{movie.position} #{movie.title} -------"
+    puts ''
+    puts "Rating: #{movie.rating}"
+    puts "Genre: #{movie.genre}"
+    puts "Rotten Tomatoes Rating: #{movie.rt_score}"
+    puts "Audience Rating: #{movieviewer_score}"
+    puts "Description: #{movie.description}"
+  end
 end
