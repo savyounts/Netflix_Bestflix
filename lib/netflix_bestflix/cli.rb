@@ -2,7 +2,8 @@ class NetflixBestflix::CLI
 
   def call
     NetflixBestflix::Scraper.new.make_shows
-    puts "Welcome to Netflix Bestflix, a great way to show you Rotten Tomatoe's top rated shows and movies on Netflix!"
+    puts "Welcome to Netflix Bestflix, a great way to show you Rotten Tomatoes' top rated shows and movies on Netflix!"
+    sleep(1)
     puts "Would you like to look at movies or shows?"
     start
   end
@@ -23,7 +24,8 @@ class NetflixBestflix::CLI
   end
 
   def movies
-    puts "What number movies would you like to see? 1-10, 11-20, 21-30, 31-40, 41+? Enter the first number of the group you'd like to see:"
+    puts "What number movies would you like to see? 1-10, 11-20, 21-30, 31-40, 41+?"
+    puts "Enter the first number of the group you'd like to see:"
     start_number = gets.strip.to_i
 
     print_movies(start_number)
