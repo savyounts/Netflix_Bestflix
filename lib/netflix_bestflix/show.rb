@@ -16,6 +16,7 @@ class NetflixBestflix::Show
       s.css(".cast").css("a").text, # need to make sure cast names are separated
       s.css(".countdown-index").text.gsub('#',''),
       s.css("div a").attr("href").value.gsub('//', 'https://')
+      # "https://www.rottentomatoes.com/tv/#{s.css("h2 a").text.gsub(' ', '_')}/"
     )
   end
 
@@ -24,33 +25,33 @@ class NetflixBestflix::Show
   end
 
   def genre
-    @genre || @doc.css(".panel-body tr:nth-child(3) td:nth-child(2)").text
+    @genre ||= @doc.css(".panel-body tr:nth-child(3) td:nth-child(2)").text
   end
 
   def rt_score
-    @rt_score || @doc.css(".critic-score .meter-value span").text
+    @rt_score ||= @doc.css(".critic-score .meter-value span").text
   end
 
   def viewer_score
-    @viewer_score || @doc.css(".audience-score .meter-value span").text
+    @viewer_score ||= @doc.css(".audience-score .meter-value span").text
   end
 
   def cast
-    @cast || @doc.css(".cast-item").collect do |c|
+    @cast ||= @doc.css(".cast-item").collect do |c|
       c.css(".cast-item .media-body a span").text
     end
   end
 
   def tv_network
-    @tv_network || @doc.css(".panel-body tr:nth-child(1) td:nth-child(2)").text
+    @tv_network ||= @doc.css(".panel-body tr:nth-child(1) td:nth-child(2)").text
   end
 
   def description
-    @description || @doc.css("#movieSynopis").text.strip
+    @description ||= @doc.css("#movieSynopis").text.strip
   end
 
   def created_by
-    @created_by || @doc.css(".movie-info div:nth-child(2)").collect do |c|
+    @created_by ||= @doc.css(".movie-info div:nth-child(2)").collect do |c|
       c.css("a").text
     end
   end
@@ -65,7 +66,7 @@ class NetflixBestflix::Show
   end
 
   def doc
-    @doc = Nokogiri::HTML(open(self.url))
+    @doc ||= Nokogiri::HTML(open(self.url))
   end
 
 end
