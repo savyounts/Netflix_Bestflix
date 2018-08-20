@@ -1,5 +1,5 @@
-class NetflixBestflix_Moive
-  attr_accessor :title, :position, :url, :starring, :genre, :rt_score, :viewer_score, :description, :rating
+class NetflixBestflix::Movie
+  attr_accessor :title, :position, :url, :genre, :rt_score, :viewer_score, :description, :rating
   @@all = []
 
   def initialize(title = nil, position = nil, url = nil)
@@ -13,20 +13,20 @@ class NetflixBestflix_Moive
     self.new(
       s.css("h2 a").text,
       s.css(".countdown-index").text.gsub('#',''),
-      s.css("h2 a").attr("href").value.gsub('//', 'https://')
+      s.css("h2 a").attr("href").value
     )
   end
 
   def self.find_by_position(position)
-      self.all.find {|show| show.position == position}
+      self.all.find {|movie| movie.position == position}
   end
 
   def genre
-    @genre ||= doc.css("ul.content-meta li:nth-child(2) meta-value").text
+    @genre ||= doc.css(".panel-body ul li:nth-child(2) .meta-value").text.strip
   end
 
   def rating
-    @rating ||= doc.css("ul.content-meta li:nth-child(1) meta-value").text
+    @rating ||= doc.css(".panel-body ul li:nth-child(1) .meta-value").text
   end
 
   def rt_score
