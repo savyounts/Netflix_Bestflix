@@ -37,7 +37,7 @@ class NetflixBestflix::Show
   end
 
   def cast
-    @cast ||= doc.css(".cast-item .media-body a span").text.join
+    @cast ||= doc.css(".cast-item .media-body a span").text
   end
 
   def tv_network
@@ -49,14 +49,11 @@ class NetflixBestflix::Show
   end
 
   def created_by
-    @created_by ||= doc.css(".movie-info div:nth-child(2)").collect do |c|
-      c.css("a").text
-    end
+    @created_by ||= doc.css(".movie_info a").text #need commas to separate names 
   end
 
   def seasons
-    seasons = 0
-    @seasons|| doc.css(".panel-body tr:nth-child(1) td:nth-child(2)").text
+    @seasons ||= doc.css("#seasonList .seasonItem").count
   end
 
   def self.all
