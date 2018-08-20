@@ -33,7 +33,7 @@ class NetflixBestflix::Show
   end
 
   def rt_score
-    @rt_score ||= doc.css(".critic-score .meter-value").text
+    @rt_score ||= doc.css(".critic-score .meter-value").text.gsub(/%(.*)/, "%")
   end
 
   def viewer_score
