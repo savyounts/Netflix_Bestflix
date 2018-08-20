@@ -97,7 +97,7 @@ class NetflixBestflix::CLI
   end
 
   def print_show(show_num)
-    show = NetflixBestflix::Show.find_by_position(show_num)
+    show = NetflixBestflix::Show.find_by_position(show_num.to_s)
     puts ""
     puts " ------- No.#{show_num} #{show.title} -------"
     puts ''
