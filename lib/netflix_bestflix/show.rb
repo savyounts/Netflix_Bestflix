@@ -29,7 +29,8 @@ class NetflixBestflix::Show
   end
 
   def genre
-    @genre ||= doc.css(".panel-body tr:nth-child(3) td:nth-child(2)").text
+    @genre ||= doc.css("#detail-heading .panel-body tr:nth-child(3) td:nth-child(2)").text
+
   end
 
   def rt_score

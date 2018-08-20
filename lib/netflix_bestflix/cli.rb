@@ -34,17 +34,15 @@ class NetflixBestflix::CLI
     input = gets.strip.to_i
 
     print_movie(input)
-    puts ''
+    puts ""
 
-    puts "Type 'back' if you'd like to go back to your list of movies."
     puts "Type 'new' if you'd like to choose a new list of movies."
     puts "Type 'shows' if you'd like to look at shows."
     puts "Type 'exit' if you are done."
+    puts ""
 
     input = gets.strip.downcase
-    if input == "back"
-      print_movies(start_number) #needs to be able to ask for movie # again
-    elsif input == "new"
+    if input == "new"
       movies
     elsif input == "shows"
       shows
@@ -67,17 +65,15 @@ class NetflixBestflix::CLI
     show_num = gets.strip.to_i
 
     print_show(show_num)
-    puts ''
+    puts ""
 
-    puts "Type 'back' if you'd like to go back to your list of shows."
     puts "Type 'new' if you'd like to choose a new list of shows."
     puts "Type 'movies' if you'd like to look at movies."
     puts "Type 'exit' if you are done."
+    puts ""
 
     input = gets.strip.downcase
-    if input == "back"
-      print_shows(start_number) #needs to be able to ask for shows again
-    elsif input == "new"
+    if input == "new"
       shows
     elsif input == "movies"
       movies

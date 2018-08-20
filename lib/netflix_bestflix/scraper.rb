@@ -8,8 +8,7 @@ class NetflixBestflix::Scraper
   end
 
   def scrape_movie_index
-    doc = Nokogiri::HTML(open("https://www.rottentomatoes.com/m/strong_island/")).pry
-    # doc = Nokogiri::HTML(open("https://editorial.rottentomatoes.com/guide/best-netflix-shows-and-movies-to-binge-watch-now/5/"))
+    doc = Nokogiri::HTML(open("https://editorial.rottentomatoes.com/guide/best-netflix-shows-and-movies-to-binge-watch-now/5/"))
     doc.css(".countdown-item")
   end
 
