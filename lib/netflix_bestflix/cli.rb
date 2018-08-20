@@ -96,23 +96,16 @@ class NetflixBestflix::CLI
     end
   end
 
-  def find_by_position(position)
-    NetflixBestflix::Show.all.find do |show|
-      show.position == position 
-    end
-  end
-
   def print_show(show_num)
-    show = find_by_position(show_num)
+    show = NetflixBestflix::Show.find_by_position(show_num)
     puts ""
-    puts " ------- No.#{show.position} #{show.title} -------"
+    puts " ------- No.#{show_num} #{show.title} -------"
     puts ''
     puts "Genre: #{show.genre}"
     puts "Rotten Tomatoes Rating: #{show.rt_score}"
     puts "Audience Rating: #{show.viewer_score}"
     puts "Description: #{show.description}"
     puts ""
-    puts "Genre: #{show.genre}"
     puts "Cast: #{show.cast}"
     puts "Seasons: #{show.seasons}"
     puts "Creators: #{show.created_by}"

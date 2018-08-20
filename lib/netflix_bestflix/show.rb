@@ -19,6 +19,10 @@ class NetflixBestflix::Show
     )
   end
 
+  def self.find_by_position(position)
+      self.all.find {|show| show.position == position}
+  end
+
   def genre
     @genre || doc.css(".panel-body tr:nth-child(3) td:nth-child(2)").text
   end
