@@ -11,12 +11,16 @@ class NetflixBestflix::Show
   end
 
   def self.new_from_scrape(s)
+    #formatting the starring argument
+    stars = s.css(".cast").css("a").text.split(/(?=[A-Z])/).each_with_index.collect do |c, i|
+      ("#{c}," if i.odd? && i != -1)  || "#{c}"
+    end.join.gsub(' ,', ' ').gsub(',', ', ')
+
     self.new(
       s.css("h2 a").text,
-      s.css(".cast").css("a").text, # need to make sure cast names are separated
+      stars,
       s.css(".countdown-index").text.gsub('#',''),
       s.css("div a").attr("href").value.gsub('//', 'https://')
-      # "https://www.rottentomatoes.com/tv/#{s.css("h2 a").text.gsub(' ', '_')}/"
     )
   end
 
@@ -49,7 +53,7 @@ class NetflixBestflix::Show
   end
 
   def created_by
-    @created_by ||= doc.css(".movie_info a").text #need commas to separate names 
+    @created_by ||= doc.css(".movie_info a").text #need commas to separate names
   end
 
   def seasons
@@ -62,7 +66,6 @@ class NetflixBestflix::Show
 
   def doc
     page ||= Nokogiri::HTML(open(self.url))
-    # puts "#{self.url}"
     @doc = page.css(".tv-container")
   end
 
