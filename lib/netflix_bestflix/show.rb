@@ -53,7 +53,9 @@ class NetflixBestflix::Show
   end
 
   def created_by
-    @created_by ||= doc.css(".movie_info a").text #need commas to separate names
+    @created_by ||= doc.css(".movie_info a").text.split(/(?=[A-Z])/).each_with_index.collect do |c, i|
+      ("#{c}," if i.odd? && i != -1)  || "#{c}"
+    end.join.gsub(' ,', ' ').gsub(',', ', ') #need commas to separate names
   end
 
   def seasons
