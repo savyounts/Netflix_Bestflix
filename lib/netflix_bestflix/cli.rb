@@ -64,6 +64,7 @@ class NetflixBestflix::CLI
   def shows
     start_number = nil
     while start_number.to_i == 0 || start_number.to_i > NetflixBestflix::Show.all.size
+      puts ""
       puts "What number shows would you like to see? 1-10, 11-20, 21-30, 31-40, 41-50, 51-60, 61-70, 71-80, 81-90 or 91+?"
       puts "Type the first number of the group you'd like to see:"
       start_number = gets.strip.to_i
