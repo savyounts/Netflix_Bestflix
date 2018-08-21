@@ -22,8 +22,13 @@ class NetflixBestflix::Scraper
     doc.css(".countdown-item")
   end
 
-  def scrape_movie_index
+  def scrape_movie_index_1
     doc = Nokogiri::HTML(open("https://editorial.rottentomatoes.com/guide/best-netflix-shows-and-movies-to-binge-watch-now/5/"))
+    doc.css(".countdown-item")
+  end
+
+  def scrape_movie_index_2
+    doc = Nokogiri::HTML(open("https://editorial.rottentomatoes.com/guide/best-netflix-shows-and-movies-to-binge-watch-now/6/"))
     doc.css(".countdown-item")
   end
 
@@ -35,8 +40,8 @@ class NetflixBestflix::Scraper
   end
 
   def make_movies
-    scrape_movie_index.each do |s|
-      NetflixBestflix::Movie.new_from_scrape(s)
-    end
+    scrape_movie_index_1.each {|s| NetflixBestflix::Movie.new_from_scrape(s)}
+    scrape_movie_index_2.each {|s| NetflixBestflix::Movie.new_from_scrape(s)}
   end
+
 end
