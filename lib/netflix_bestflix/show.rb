@@ -13,7 +13,7 @@ class NetflixBestflix::Show
   def self.new_from_scrape(s)
     #formatting the starring argument
     stars = s.css(".cast").css("a").text.split(/(?=[A-Z])/).each_with_index.collect do |c, i|
-      ("#{c}," if i.odd? && i != -1)  || "#{c}"
+      ("#{c}," if i.odd? && i != (-1))  || "#{c}"
     end.join.gsub(' ,', ' ').gsub(',', ', ')
 
     self.new(

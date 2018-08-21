@@ -12,9 +12,9 @@ class NetflixBestflix::CLI
     puts ""
     input = gets.strip.downcase
     if input == "movies"
-      movies
+      select_movies
     elsif input == "shows"
-      shows
+      select_shows
     elsif input == "exit"
       puts "Goodbye for now, happy viewing!"
     else
@@ -23,82 +23,85 @@ class NetflixBestflix::CLI
     end
   end
 
-  def movies
-    start_number = nil
-    while start_number.to_i == 0 || start_number.to_i > NetflixBestflix::Movie.all.size
-      puts ""
-      puts "Which movies would you like to see? 1-10, 11-20, 21-30, 31-40, 41+?"
-      puts "Enter the first number of the group you'd like to see:"
-      start_number = gets.strip.to_i
-    end
-
-    print_movies(start_number)
-
+  def select_movies
     input = nil
-    while input.to_i == 0 || input.to_i > NetflixBestflix::Movie.all.size
     puts ""
-    puts "Type the number of the movie you would like more information about:"
-    input = gets.strip.to_i
-    end
-    print_movie(input)
-    puts ""
+    puts "Which movies would you like to see? 1-10, 11-20, 21-30, 31-40, 41+?"
+    puts "Enter the first number of the group you'd like to see:"
+    input = gets.strip
 
-    puts "Type 'new' if you'd like to choose a new list of movies."
-    puts "Type 'shows' if you'd like to look at shows."
-    puts "Type 'exit' if you are done."
-    puts ""
-
-    input = gets.strip.downcase
-    if input == "new"
-      movies
-    elsif input == "shows"
-      shows
-    elsif input == "exit"
+    if input == "exit"
       puts "Goodbye for now, happy viewing!"
+    elsif input.to_i > NetflixBestflix::Movie.all.size || input.to_i == 0
+      select_movies
     else
-      puts "Sorry, I didn't understand your answer. Please type 'back', 'new', 'shows' or 'exit'."
-      input = gets.strip.downcase
+      start_number = input.to_i
+      print_movies(start_number)
+      select_single_movie
     end
   end
 
-  def shows
-    start_number = nil
-    while start_number.to_i == 0 || start_number.to_i > NetflixBestflix::Show.all.size
+    def select_single_movie
+      input = nil
       puts ""
-      puts "What number shows would you like to see? 1-10, 11-20, 21-30, 31-40, 41-50, 51-60, 61-70, 71-80, 81-90 or 91+?"
-      puts "Type the first number of the group you'd like to see:"
-      start_number = gets.strip.to_i
+      puts "Type the number of the movie you would like more information about:"
+      input = gets.strip
+
+      if input == "exit"
+        puts "Goodbye for now, happy viewing!"
+      elsif input.to_i == 0 || input.to_i > NetflixBestflix::Movie.all.size
+        select_single_movie
+      else
+        print_movie(input)
+        puts ""
+
+        puts "Type 'movies' if you'd like to choose a new list of movies."
+        puts "Type 'shows' if you'd like to look at shows."
+        puts "Type 'exit' if you are done."
+        puts ""
+        start
+      end
     end
 
-    print_shows(start_number)
-
+  def select_shows
     input = nil
-    while input.to_i == 0 || input.to_i > NetflixBestflix::Show.all.size
+    puts ""
+    puts "What number shows would you like to see? 1-10, 11-20, 21-30, 31-40, 41-50, 51-60, 61-70, 71-80, 81-90 or 91+?"
+    puts "Type the first number of the group you'd like to see:"
+    input = gets.strip
+
+    if input == "exit"
+      puts "Goodbye for now, happy viewing!"
+    elsif input.to_i > NetflixBestflix::Show.all.size || input.to_i == 0
+      select_shows
+    else
+      start_number = input.to_i
+      print_shows(start_number)
+      select_single_show
+    end
+  end
+
+  def select_single_show
+    input = nil
       puts ""
       puts "Type the number of the show you would like more information about:"
-      input = gets.strip.to_i
+      input = gets.strip
+
+      if input == "exit"
+        puts "Goodbye for now, happy viewing!"
+      elsif input.to_i == 0 || input.to_i > NetflixBestflix::Show.all.size
+        select_single_show
+      else
+        print_show(input)
+        puts ""
+
+        puts "Type 'shows' if you'd like to choose a new list of shows."
+        puts "Type 'movies' if you'd like to look at movies."
+        puts "Type 'exit' if you are done."
+        puts ""
+        start
+      end
     end
-
-    print_show(input)
-    puts ""
-
-    puts "Type 'new' if you'd like to choose a new list of shows."
-    puts "Type 'movies' if you'd like to look at movies."
-    puts "Type 'exit' if you are done."
-    puts ""
-
-    input = gets.strip.downcase
-    if input == "new"
-      shows
-    elsif input == "movies"
-      movies
-    elsif input == "exit"
-      puts "Goodbye for now, happy viewing!"
-    else
-      puts "Sorry, I didn't understand your answer. Please type 'back', 'new', 'shows' or 'exit'."
-      input = gets.strip.downcase
-    end
-  end
 
   def print_shows(start_num)
     puts ""
