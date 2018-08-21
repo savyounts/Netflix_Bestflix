@@ -16,8 +16,10 @@ class NetflixBestflix::CLI
     elsif input == "shows"
       select_shows
     elsif input == "exit"
+      puts ""
       puts "Goodbye for now, happy viewing!"
     else
+      puts ""
       puts "I'm sorry, I didn't understand your answer. Please type 'movies' or 'shows'."
       start
     end
@@ -31,6 +33,7 @@ class NetflixBestflix::CLI
     input = gets.strip
 
     if input == "exit"
+      puts ""
       puts "Goodbye for now, happy viewing!"
     elsif input.to_i > NetflixBestflix::Movie.all.size || input.to_i == 0
       select_movies
@@ -48,17 +51,16 @@ class NetflixBestflix::CLI
       input = gets.strip
 
       if input == "exit"
+        puts ""
         puts "Goodbye for now, happy viewing!"
       elsif input.to_i == 0 || input.to_i > NetflixBestflix::Movie.all.size
         select_single_movie
       else
         print_movie(input)
         puts ""
-
         puts "Type 'movies' if you'd like to choose a new list of movies."
         puts "Type 'shows' if you'd like to look at shows."
         puts "Type 'exit' if you are done."
-        puts ""
         start
       end
     end
@@ -71,6 +73,7 @@ class NetflixBestflix::CLI
     input = gets.strip
 
     if input == "exit"
+      puts ""
       puts "Goodbye for now, happy viewing!"
     elsif input.to_i > NetflixBestflix::Show.all.size || input.to_i == 0
       select_shows
@@ -88,17 +91,16 @@ class NetflixBestflix::CLI
       input = gets.strip
 
       if input == "exit"
+        puts ""
         puts "Goodbye for now, happy viewing!"
       elsif input.to_i == 0 || input.to_i > NetflixBestflix::Show.all.size
         select_single_show
       else
         print_show(input)
         puts ""
-
         puts "Type 'shows' if you'd like to choose a new list of shows."
         puts "Type 'movies' if you'd like to look at movies."
         puts "Type 'exit' if you are done."
-        puts ""
         start
       end
     end
@@ -125,7 +127,7 @@ class NetflixBestflix::CLI
     show = NetflixBestflix::Show.find_by_position(show_num.to_s)
     puts ""
     puts " ------- No.#{show.position} #{show.title} -------"
-    puts ''
+    puts ""
     puts "Genre: #{show.genre}"
     puts "Rotten Tomatoes Rating: #{show.rt_score}"
     puts "Audience Rating: #{show.viewer_score}"
@@ -141,7 +143,7 @@ class NetflixBestflix::CLI
     movie = NetflixBestflix::Movie.find_by_position(show_num.to_s)
     puts ""
     puts " ------- No.#{movie.position} #{movie.title} -------"
-    puts ''
+    puts ""
     puts "Rating: #{movie.rating}"
     puts "Genre: #{movie.genre}"
     puts "Rotten Tomatoes Rating: #{movie.rt_score}"
