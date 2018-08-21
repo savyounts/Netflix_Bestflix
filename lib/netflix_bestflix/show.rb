@@ -1,24 +1,17 @@
 class NetflixBestflix::Show
-  attr_accessor :title, :position, :url, :starring, :genre, :rt_score, :viewer_score, :cast,  :tv_network, :description, :created_by, :seasons
+  attr_accessor :title, :position, :url, :genre, :rt_score, :viewer_score, :cast,  :tv_network, :description, :created_by, :seasons
   @@all = []
 
   def initialize(title = nil, starring = nil, position = nil, url = nil)
     @title = title
-    @starring = starring
     @position = position
     @url = url
     @@all << self
   end
 
   def self.new_from_scrape(s)
-    #formatting the starring argument
-    stars = s.css(".cast").css("a").text.split(/(?=[A-Z])/).each_with_index.collect do |c, i|
-      ("#{c}," if i.odd? && i != (-1))  || "#{c}"
-    end.join.gsub(' ,', ' ').gsub(',', ', ')
-
     self.new(
       s.css("h2 a").text,
-      stars,
       s.css(".countdown-index").text.gsub('#',''),
       s.css("div a").attr("href").value.gsub('//', 'https://')
     )
@@ -29,8 +22,7 @@ class NetflixBestflix::Show
   end
 
   def genre
-    @genre ||= doc.css("#detail-heading .panel-body tr:nth-child(3) td:nth-child(2)").text
-
+    @genre ||= doc.css("#detail_panel .panel-body tr:nth-child(3) td:nth-child(2)").text
   end
 
   def rt_score
@@ -46,7 +38,7 @@ class NetflixBestflix::Show
   end
 
   def tv_network
-    @tv_network ||= doc.css(".panel-body tr:nth-child(1) td:nth-child(2)").text
+    @tv_network ||= doc.css("#detail_panel .panel-body tr:nth-child(1) td:nth-child(2)").text
   end
 
   def description
