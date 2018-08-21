@@ -3,7 +3,6 @@ class NetflixBestflix::Scraper
 
 
   def scrape_show_index_1
-    # doc = Nokogiri::HTML(open("https://www.rottentomatoes.com/tv/master_of_none/")).pry
     doc = Nokogiri::HTML(open("https://editorial.rottentomatoes.com/guide/best-netflix-shows-and-movies-to-binge-watch-now/"))
     doc.css(".countdown-item")
   end

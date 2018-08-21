@@ -110,7 +110,7 @@ class NetflixBestflix::CLI
     puts " ------- Shows No.#{start_num} - #{start_num+9} -------"
     puts ""
     NetflixBestflix::Show.all[start_num-1..start_num+8].each do |show|
-      puts "#{show.position}. #{show.title} - #{show.genre}"
+      puts "#{show.position}. #{show.title}"
     end
   end
 
@@ -128,7 +128,6 @@ class NetflixBestflix::CLI
     puts ""
     puts " ------- No.#{show.position} #{show.title} -------"
     puts ""
-    puts "Genre: #{show.genre}"
     puts "Rotten Tomatoes Rating: #{show.rt_score}"
     puts "Audience Rating: #{show.viewer_score}"
     puts "Description: #{show.description}"
@@ -136,7 +135,6 @@ class NetflixBestflix::CLI
     puts "Cast: #{show.cast}"
     puts "Seasons: #{show.seasons}"
     puts "Creators: #{show.created_by}"
-    puts "TV Network: #{show.tv_network}"
   end
 
   def print_movie(show_num)

@@ -1,8 +1,8 @@
 class NetflixBestflix::Show
-  attr_accessor :title, :position, :url, :genre, :rt_score, :viewer_score, :cast,  :tv_network, :description, :created_by, :seasons
+  attr_accessor :title, :position, :url, :rt_score, :viewer_score, :cast, :description, :created_by, :seasons
   @@all = []
 
-  def initialize(title = nil, starring = nil, position = nil, url = nil)
+  def initialize(title = nil, position = nil, url = nil)
     @title = title
     @position = position
     @url = url
@@ -21,10 +21,6 @@ class NetflixBestflix::Show
       self.all.find {|show| show.position == position}
   end
 
-  def genre
-    @genre ||= doc.css("#detail_panel .panel-body tr:nth-child(3) td:nth-child(2)").text
-  end
-
   def rt_score
     @rt_score ||= doc.css(".critic-score .meter-value").text.gsub(/%(.*)/, "%")
   end
@@ -35,10 +31,6 @@ class NetflixBestflix::Show
 
   def cast
     @cast ||= doc.css(".cast-item .media-body a span").text
-  end
-
-  def tv_network
-    @tv_network ||= doc.css("#detail_panel .panel-body tr:nth-child(1) td:nth-child(2)").text
   end
 
   def description
