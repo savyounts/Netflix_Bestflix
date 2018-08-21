@@ -28,7 +28,7 @@ class NetflixBestflix::CLI
   def select_movies
     input = nil
     puts ""
-    puts "Which movies would you like to see? 1-10, 11-20, 21-30, 31-40, 41+?"
+    puts "Which movies would you like to see? 1-10, 11-20, 21-30, 31-40, 41-50, 51+?"
     puts "Enter the first number of the group you'd like to see:"
     input = gets.strip
 
