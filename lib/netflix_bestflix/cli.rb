@@ -44,6 +44,25 @@ class NetflixBestflix::CLI
     end
   end
 
+  def select_shows
+    input = nil
+    puts ""
+    puts "Which shows would you like to see? 1-10, 11-20, 21-30, 31-40, 41-50, 51-60, 61-70, 71-80, 81-90 or 91+?"
+    puts "Type the first number of the group you'd like to see:"
+    input = gets.strip
+
+    if input == "exit"
+      puts ""
+      puts "Goodbye for now, happy viewing!"
+    elsif input.to_i > NetflixBestflix::Show.all.size || input.to_i == 0
+      select_shows
+    else
+      start_number = input.to_i
+      print_shows(start_number)
+      select_single_show
+    end
+  end
+
     def select_single_movie
       input = nil
       puts ""
@@ -64,25 +83,6 @@ class NetflixBestflix::CLI
         start
       end
     end
-
-  def select_shows
-    input = nil
-    puts ""
-    puts "What number shows would you like to see? 1-10, 11-20, 21-30, 31-40, 41-50, 51-60, 61-70, 71-80, 81-90 or 91+?"
-    puts "Type the first number of the group you'd like to see:"
-    input = gets.strip
-
-    if input == "exit"
-      puts ""
-      puts "Goodbye for now, happy viewing!"
-    elsif input.to_i > NetflixBestflix::Show.all.size || input.to_i == 0
-      select_shows
-    else
-      start_number = input.to_i
-      print_shows(start_number)
-      select_single_show
-    end
-  end
 
   def select_single_show
     input = nil
@@ -110,7 +110,7 @@ class NetflixBestflix::CLI
     puts " ------- Shows No.#{start_num} - #{start_num+9} -------"
     puts ""
     NetflixBestflix::Show.all[start_num-1..start_num+8].each do |show|
-      puts "#{show.position}. #{show.title} - Starring: #{show.starring}"
+      puts "#{show.position}. #{show.title} - #{show.genre}"
     end
   end
 
