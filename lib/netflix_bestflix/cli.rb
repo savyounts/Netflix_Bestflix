@@ -39,7 +39,7 @@ class NetflixBestflix::CLI
     puts ""
     puts "Type the number of the movie you would like more information about:"
     input = gets.strip.to_i
-    end 
+    end
     print_movie(input)
     puts ""
 
@@ -62,17 +62,23 @@ class NetflixBestflix::CLI
   end
 
   def shows
-    puts "What number shows would you like to see? 1-10, 11-20, 21-30, 31-40, 41-50, 51-60, 61-70, 71-80, 81-90 or 91+?"
-    puts "Type the first number of the group you'd like to see:"
-    show_numbers = gets.strip.to_i
+    start_number = nil
+    while start_number.to_i == 0 || start_number.to_i > NetflixBestflix::Show.all.size
+      puts "What number shows would you like to see? 1-10, 11-20, 21-30, 31-40, 41-50, 51-60, 61-70, 71-80, 81-90 or 91+?"
+      puts "Type the first number of the group you'd like to see:"
+      start_number = gets.strip.to_i
+    end
 
-    print_shows(show_numbers)
+    print_shows(start_number)
 
-    puts ""
-    puts "Type the number of the show you would like more information about:"
-    show_num = gets.strip.to_i
+    input = nil
+    while input.to_i == 0 || input.to_i > NetflixBestflix::Show.all.size
+      puts ""
+      puts "Type the number of the show you would like more information about:"
+      input = gets.strip.to_i
+    end
 
-    print_show(show_num)
+    print_show(input)
     puts ""
 
     puts "Type 'new' if you'd like to choose a new list of shows."
