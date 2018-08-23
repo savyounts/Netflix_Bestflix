@@ -1,10 +1,11 @@
 class NetflixBestflix::CLI
 
   def call
-    NetflixBestflix::Scraper.new.make_shows
-    NetflixBestflix::Scraper.new.make_movies
     puts "Welcome to Netflix Bestflix, a great way to show you Rotten Tomatoes' top rated shows and movies on Netflix!"
     puts "Would you like to look at movies or shows?"
+    NetflixBestflix::Scraper.new.make_shows
+    NetflixBestflix::Scraper.new.make_movies
+
     start
   end
 
