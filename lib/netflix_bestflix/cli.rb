@@ -5,7 +5,6 @@ class NetflixBestflix::CLI
     puts "Would you like to look at movies or shows?"
     NetflixBestflix::Scraper.new.make_shows
     NetflixBestflix::Scraper.new.make_movies
-
     start
   end
 
