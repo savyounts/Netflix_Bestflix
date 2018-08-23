@@ -35,7 +35,7 @@ class NetflixBestflix::CLI
     if input == "exit"
       puts ""
       puts "Goodbye for now, happy viewing!"
-    elsif input.to_i > NetflixBestflix::Movie.all.size || input.to_i == 0
+    elsif input.to_i > NetflixBestflix::Movie.all.size || input.to_i <= 0
       select_movies
     else
       start_number = input.to_i
@@ -54,7 +54,7 @@ class NetflixBestflix::CLI
     if input == "exit"
       puts ""
       puts "Goodbye for now, happy viewing!"
-    elsif input.to_i > NetflixBestflix::Show.all.size || input.to_i == 0
+    elsif input.to_i > NetflixBestflix::Show.all.size || input.to_i <= 0
       select_shows
     else
       start_number = input.to_i
@@ -72,7 +72,7 @@ class NetflixBestflix::CLI
       if input == "exit"
         puts ""
         puts "Goodbye for now, happy viewing!"
-      elsif input.to_i == 0 || input.to_i > NetflixBestflix::Movie.all.size
+      elsif input.to_i <= 0 || input.to_i > NetflixBestflix::Movie.all.size
         select_single_movie
       else
         print_movie(input)
@@ -93,7 +93,7 @@ class NetflixBestflix::CLI
       if input == "exit"
         puts ""
         puts "Goodbye for now, happy viewing!"
-      elsif input.to_i == 0 || input.to_i > NetflixBestflix::Show.all.size
+      elsif input.to_i <= 0 || input.to_i > NetflixBestflix::Show.all.size
         select_single_show
       else
         print_show(input)

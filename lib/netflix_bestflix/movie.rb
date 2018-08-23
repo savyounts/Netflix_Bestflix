@@ -46,8 +46,8 @@ class NetflixBestflix::Movie
   end
 
   def doc
-    page ||= Nokogiri::HTML(open(self.url))
-    @doc = page.css("#mainColumn")
+
+    @doc ||= Nokogiri::HTML(open(self.url)).css("#mainColumn")
   end
 
 end

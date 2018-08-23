@@ -52,8 +52,7 @@ class NetflixBestflix::Show
   end
 
   def doc
-    page ||= Nokogiri::HTML(open(self.url))
-    @doc = page.css(".tv-container")
+    @doc ||= Nokogiri::HTML(open(self.url)).css(".tv-container")
   end
 
 end
